@@ -52,3 +52,10 @@ spec:
           limits:
             cpu: 100m
             memory: 100Mi
+        volumeMounts:
+        - name: config
+          mountPath: /etc/nginx/conf.d/
+      volumes:
+      - name: config
+        configMap:
+          name: my-configmap
