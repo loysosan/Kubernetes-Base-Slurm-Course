@@ -22,3 +22,27 @@ spec:
         image: nginx:1.12
         ports:
         - containerPort: 80
+        readinessProbe:
+          failureThreshold: 3 #Количество попыток для выполнения пробы
+          httpGet:
+            path: /
+            port: 80
+          periodSeconds: 10 #Period for check 1 peer 10 seconds
+          successThreshold: 1
+          timeoutSeconds: 1 # Timout for probe
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 80
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+          initialDelaySeconds: 10 #After start app wait 10 second before probe
+        startupProbe:
+          httpGet:
+            path: /
+            port: 80
+          periodSeconds: 30
+          failureThreshold: 10
+        resources:
