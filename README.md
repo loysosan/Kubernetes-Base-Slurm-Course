@@ -1,1 +1,2 @@
-# Kubernetes-Base---Slurm-Course
+# Kubernetes Base (Slurm Course)
+Файли прикладів маніфейстів які наводяться у вишче зазначеному курсі
