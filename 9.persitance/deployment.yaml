@@ -24,10 +24,6 @@ spec:
         - name: TEST
           value: foo
         - name: TEST_1
-          valueFrom:
-            secretKeyRef:
-              name: test
-              key: test1
         ports:
         - containerPort: 80
         readinessProbe:
