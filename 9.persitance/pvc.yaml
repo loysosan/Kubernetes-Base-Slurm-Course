@@ -7,6 +7,6 @@ spec:
   storageClassName: local-storage
   accessModes:
     - ReadWriteMany #RWmany множественный доступ к диску, ReadWriteOnce эксклюзивный доступ (зависит от системы хранения данных)
-  resorces:
+  resources:
     requests:
       storage: 1Gi
