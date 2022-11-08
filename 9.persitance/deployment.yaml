@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-app
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.12
+        env:
+        - name: TEST
+          value: foo
+        - name: TEST_1
+          valueFrom:
+            secretKeyRef:
+              name: test
+              key: test1
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          failureThreshold: 3 #Количество попыток для выполнения пробы
+          httpGet:
+            path: /
+            port: 80
+          periodSeconds: 10 #Period for check 1 peer 10 seconds
+          successThreshold: 1
+          timeoutSeconds: 1 # Timout for probe
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 80
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+          initialDelaySeconds: 10 #After start app wait 10 second before probe
+        startupProbe:
+          httpGet:
+            path: /
+            port: 80
+          periodSeconds: 30
+          failureThreshold: 10
+        resources:
+          requests:
+            cpu: 50m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        volumeMounts:
+        - name: config
+          mountPath: /etc/nginx/conf.d/
+      volumes:
+      - name: config
+        configMap:
+          name: fileshare
+      - name: metadata
+        persistentVolumeClaim:
+          claimName: fileshare

@@ -1,0 +1,12 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: fileshare
+spec:
+  storageClassName: local-storage
+  accessModes:
+    - ReadWriteMany #RWmany множественный доступ к диску, ReadWriteOnce эксклюзивный доступ (зависит от системы хранения данных)
+  resorces:
+    requests:
+      storage: 1Gi
