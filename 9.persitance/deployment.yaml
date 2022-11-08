@@ -63,7 +63,7 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /etc/nginx/conf.d/
-        - name: metadata
+        - name: data
           mountPath: /data
       volumes:
       - name: config
