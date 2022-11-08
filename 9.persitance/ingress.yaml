@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: fileshare
+  name: fileshare-ingress
 spec:
   rules:
     - host: minikub-internal.ua
