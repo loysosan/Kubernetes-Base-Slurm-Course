@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service
+  name: fileshare
 spec:
   selector:
-    app: my-app # Select all pods that have this labels
+    app: my-fileshare # Select all pods that have this labels
   ports:
   - port: 80
     targetPort: 80

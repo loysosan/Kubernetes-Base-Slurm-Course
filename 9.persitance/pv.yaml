@@ -12,7 +12,7 @@ spec:
   storageClassName: local-storage
   local:
     path: /mnt
-  nodeAffinity:
+  nodeAffinity: #Describe for Kubernetes where located Local Volume
     required:
       nodeSelectorTerms:
       - matchExpressions:
