@@ -13,7 +13,7 @@ data:
         return 200 '$hostname\n';
       }
       location /files {
-        alias: /data;
+        alias /data;
         autoindex on;
         client_body_temp_path /tmp;
         dav_methods PUT DELETE MKCOL COPY MOVE;
